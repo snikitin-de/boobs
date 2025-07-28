@@ -1,67 +1,54 @@
-from turtle import *
-import random, os
+import matplotlib.pyplot as plt
+import matplotlib.patches as patches
+import random
 
-# Настройка окна
-os.system('mode con: cols=50 lines=10')
+def save_breast():
+    # Цвета кожи
+    skin_tones = {
+        'Black': '#443421',
+        'White': '#ffdbaf',
+        'Irish': '#fff2e2',
+        'African': '#756046',
+        'Asian': '#ffe8b2',
+        'Hispanic': '#edb86f',
+        'Indian': '#997138',
+    }
 
-# Случайный выбор цвета кожи
-skin_tones = {
-    'Black': '#443421',
-    'White': '#ffdbaf',
-    'Irish': '#fff2e2',
-    'African': '#756046',
-    'Asian': '#ffe8b2',
-    'Hispanic': '#edb86f',
-    'Indian': '#997138',
-}
+    race_name, skin_color = random.choice(list(skin_tones.items()))
+    breast_size = random.randint(60, 100)
+    nipple_size = breast_size // 4
+    spacing = -10
 
-race_name, skin_color = random.choice(list(skin_tones.items()))
-breast_size = random.randint(60, 100)  # Радиус груди
-nipple_size = breast_size // 4         # Радиус соска
-spacing = -10                          # Отрицательное значение для небольшого наложения
+    print('Race:', race_name)
+    print('Breast size:', breast_size)
+    print('Nipple size:', nipple_size)
 
-# Вывод параметров
-print('Race:', race_name)
-print('Breast size:', breast_size)
-print('Nipple size:', nipple_size)
+    fig, ax = plt.subplots(figsize=(6, 4))
+    ax.set_aspect('equal')
+    ax.set_facecolor('black')
+    plt.axis('off')
 
-# Настройка окна черепашки
-hideturtle()
-screen_width = breast_size * 2 * 2 + 100  # две груди
-screen_height = breast_size * 2 + 100
-setup(screen_width, screen_height)
-title('Boobs Window')
-speed(10)
-bgcolor('black')
+    left_x = breast_size + 10
+    right_x = left_x + breast_size * 2 + spacing
+    center_y = breast_size + 10
 
-# Функция рисования груди
-def draw_breast(x, y):
-    penup()
-    goto(x, y)
-    pendown()
-    color(skin_color)
-    begin_fill()
-    circle(breast_size)
-    end_fill()
+    def draw_breast(center_x, center_y):
+        breast = patches.Circle((center_x, center_y), breast_size,
+                                facecolor=skin_color, edgecolor='none')
+        ax.add_patch(breast)
+        nipple = patches.Circle((center_x, center_y),
+                                nipple_size, facecolor='brown', edgecolor='none')
+        ax.add_patch(nipple)
 
-    # Сосок
-    penup()
-    goto(x, y + breast_size - nipple_size)
-    pendown()
-    color('brown')
-    begin_fill()
-    circle(nipple_size)
-    end_fill()
+    draw_breast(left_x, center_y)
+    draw_breast(right_x, center_y)
 
-# Центрирование
-start_x = -breast_size
-start_y = -breast_size // 2
+    margin = 20
+    plt.xlim(0, right_x + breast_size + margin)
+    plt.ylim(0, center_y + breast_size + margin)
 
-# Рисуем левую грудь
-draw_breast(start_x, start_y)
+    path = r'.\boobs.png'
+    plt.savefig(path, dpi=300, bbox_inches='tight', pad_inches=0)
+    plt.close()
 
-# Рисуем правую грудь (впритык)
-draw_breast(start_x + breast_size * 2 + spacing, start_y)
-
-print('Complete.')
-done()
+    print(f'Saved to {path}')
