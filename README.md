@@ -1,8 +1,17 @@
 # boobs
 
+Команды в телеграмм боте:
+
+- /boobs — генерация груди
+- /dick — генерация пениса
+
+## Dick 2D
+
+<img width="2385" height="950" alt="dick" src="https://github.com/user-attachments/assets/085708b7-d551-4cec-bb77-102563e9bbad" />
+
 ## Boobs 2D
 
-<img width="481" height="398" alt="{DCF04C50-786F-4477-98EB-E62C3BE69F9B}" src="https://github.com/user-attachments/assets/bced8542-d8a4-401b-9f20-613004306d5d" />
+<img width="1395" height="765" alt="boobs" src="https://github.com/user-attachments/assets/c21e2cc7-04da-45f2-9b4f-116d68072a03" />
 
 ## Boobs Schematic 2D
 
