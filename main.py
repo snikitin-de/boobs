@@ -2,6 +2,7 @@ import os
 import telebot
 import boobs2D
 import dick2D
+import butt2D
 from dotenv import load_dotenv
 
 # Load environment variables
@@ -17,7 +18,6 @@ def send_welcome_message(message):
     bot.send_message(message.chat.id,
                      'Привет! Я могу сгенерировать тебе сиськи!')
 
-# Transcribe message into text manually
 @bot.message_handler(commands=['boobs'])
 def send_message(message):
     bot.send_message(message.chat.id, "Сиськи!")
@@ -26,13 +26,20 @@ def send_message(message):
     with open(r'.\boobs.png', 'rb') as photo:
         bot.send_photo(message.chat.id, photo)
     
-# Transcribe message into text manually
 @bot.message_handler(commands=['dick'])
 def send_message(message):
     bot.send_message(message.chat.id, "Писюн!")
     dick2D.save_dick()
     # Отправить изображение
     with open(r'.\dick.png', 'rb') as photo:
+        bot.send_photo(message.chat.id, photo)
+
+@bot.message_handler(commands=['butt'])
+def send_message(message):
+    bot.send_message(message.chat.id, "Жопа!")
+    butt2D.save_butt()
+    # Отправить изображение
+    with open(r'.\butt.png', 'rb') as photo:
         bot.send_photo(message.chat.id, photo)
 
 if __name__ == '__main__':
