@@ -4,6 +4,11 @@
 
 - /boobs — генерация груди
 - /dick — генерация пениса
+- /butt — генерация попы
+
+## Butt 2D
+
+<img width="984" height="950" alt="butt" src="https://github.com/user-attachments/assets/55ebf305-b0fc-4fdf-af1e-c9874a81cb13" />
 
 ## Dick 2D
 
